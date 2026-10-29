@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Search as SearchIcon, Plus, Filter, Home as HomeIcon, Heart, User } from 'lucide-react';
+import { Search as SearchIcon, Plus, Filter, Home as HomeIcon, Heart, User, Bell } from 'lucide-react';
 import ListingCard from '../components/ListingCard.jsx';
 import { useApp } from '../context/AppContext.jsx';
 
