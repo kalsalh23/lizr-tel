@@ -10,6 +10,7 @@ import ProductDetail from './screens/ProductDetail.jsx';
 import BottomNav from './components/BottomNav.jsx';
 import FilterSheet from './components/FilterSheet.jsx';
 import Toast from './components/Toast.jsx';
+import ErrorBoundary from './components/ErrorBoundary.jsx';
 import { AppProvider } from './context/AppContext.jsx';
 
 const MAIN_ROUTES = ['/', '/search', '/post', '/favorites', '/account'];
@@ -24,24 +25,26 @@ export default function App() {
 
   return (
     <AppProvider>
-      <BrowserRouter>
-        <div className="app">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/search" element={<Search />} />
-            <Route path="/post" element={<Post />} />
-            <Route path="/chat" element={<Chat />} />
-            <Route path="/account" element={<Account />} />
-            <Route path="/favorites" element={<Favorites />} />
-            <Route path="/product/:id" element={<ProductDetail />} />
-          </Routes>
+      <ErrorBoundary>
+        <BrowserRouter>
+          <div className="app">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/search" element={<Search />} />
+              <Route path="/post" element={<Post />} />
+              <Route path="/chat" element={<Chat />} />
+              <Route path="/account" element={<Account />} />
+              <Route path="/favorites" element={<Favorites />} />
+              <Route path="/product/:id" element={<ProductDetail />} />
+            </Routes>
 
-          {isMain && <BottomNav />}
+            {isMain && <BottomNav />}
 
-          <FilterSheet />
-          <Toast />
-        </div>
-      </BrowserRouter>
+            <FilterSheet />
+            <Toast />
+          </div>
+        </BrowserRouter>
+      </ErrorBoundary>
     </AppProvider>
   );
 }
