@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import {
   Settings, Heart, ShoppingBag, HelpCircle,
-  LogOut, Star, Check,
+  LogOut, Star, Check, Instagram, Facebook, Phone,
 } from 'lucide-react';
 import { useApp } from '../context/AppContext.jsx';
 
@@ -95,6 +95,40 @@ export default function Account() {
           ))}
         </div>
       ))}
+
+      <div className="menu-section contact-section">
+        <h4 style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', fontWeight: 600, marginBottom: 12, marginLeft: 16 }}>اتصل بنا</h4>
+        <div className="menu-item contact-item" style={{ cursor: 'default' }}>
+          <div className="menu-icon" style={{ background: 'var(--bg-soft)', color: 'var(--text-secondary)' }}>
+            <Instagram size={18} strokeWidth={1.8} />
+          </div>
+          <span className="menu-text">lasertel</span>
+          <a href="https://www.instagram.com/lasertel?exln=MW1jN2g2Mm1mZWRwcw==" style={{ color: 'var(--text-tertiary)', fontSize: '0.72rem', marginLeft: 'auto' }}>
+            apertura en nueva ventana
+          </a>
+        </div>
+        <div className="menu-item contact-item" style={{ cursor: 'default' }}>
+          <div className="menu-icon" style={{ background: 'var(--bg-soft)', color: 'var(--text-secondary)' }}>
+            <Facebook size={18} strokeWidth={1.8} />
+          </div>
+          <span className="menu-text">lizr.tel</span>
+          <a href="https://www.facebook.com/share/1C3k5pVzz1/" style={{ color: 'var(--text-tertiary)', fontSize: '0.72rem', marginLeft: 'auto' }}>
+            apertura en nueva ventana
+          </a>
+        </div>
+        <div className="menu-item contact-item" style={{ cursor: 'default' }}>
+          <div className="menu-icon" style={{ background: 'var(--bg-soft)', color: 'var(--text-secondary)' }}>
+            <Phone size={18} strokeWidth={1.8} />
+          </div>
+          <span className="menu-text">الجوال: 09577451969</span>
+        </div>
+        <div className="menu-item contact-item" style={{ cursor: 'default' }}>
+          <div className="menu-icon" style={{ background: 'var(--bg-soft)', color: 'var(--text-secondary)' }}>
+            <Phone size={18} strokeWidth={1.8} />
+          </div>
+          <span className="menu-text">الأرضي: 0332225294</span>
+        </div>
+      </div>
 
       <div className="app-footer">© 2025 lizr.tel — الإصدار 1.0</div>
     </>

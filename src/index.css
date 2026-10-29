@@ -646,6 +646,39 @@ body {
   border-radius: 4px;
 }
 
+/* Contact Section */
+.contact-section {
+  padding: 16px;
+  background: var(--card);
+  border-top: 1px solid var(--border);
+}
+
+.contact-section h4 {
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+  font-weight: 600;
+  margin-bottom: 12px;
+  margin-left: 16px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--bg-soft);
+  cursor: default;
+}
+
+.contact-item:last-child {
+  border-bottom: none;
+}
+
+.contact-item .menu-text {
+  margin: 0 12px;
+  color: var(--text);
+}
+
 /* Product Detail */
 .product-detail-image {
   width: 100%;
