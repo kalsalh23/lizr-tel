@@ -1,10 +1,7 @@
 import { Heart } from 'lucide-react';
 import { useApp } from '../context/AppContext.jsx';
 
-export default function ListingCard({ product }) {
-  const { favorites, toggleFavorite } = useApp();
-  const isFav = favorites.includes(product.id);
-
+export default function ListingCard({ product, isFav, onToggleFavorite }) {
   return (
     <div className="listing-card" style={{ cursor: 'pointer' }}>
       <div className="listing-image">
@@ -15,38 +12,29 @@ export default function ListingCard({ product }) {
       </div>
       <div className="listing-body">
         <div className="listing-title">{product.title}</div>
-        <div className="listing-meta">
-          <span>{product.category}</span>
-          <span>•</span>
-          <span>{product.condition}</span>
+        <div className="listing-divider" />
+        <div className="listing-meta-row">
+          <span className="listing-location">
+            📍 {product.location}
+          </span>
+          <span className="listing-price">{product.price} {product.currency}</span>
         </div>
-        <div className="listing-price">
-          {product.price} {product.currency}
-        </div>
+        <div className="listing-date">منذ ساعتين</div>
       </div>
       <button
-        className="fav-btn"
+        className="listing-fav-btn"
         onClick={(e) => {
           e.stopPropagation();
-          toggleFavorite(product.id);
+          onToggleFavorite(product.id);
         }}
         style={{
           position: 'absolute',
-          top: 8,
-          right: 8,
-          width: 32,
-          height: 32,
-          borderRadius: 8,
-          border: 'none',
-          background: 'rgba(255,255,255,0.9)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          cursor: 'pointer',
+          bottom: 8,
+          left: 8,
         }}
       >
         <Heart
-          size={16}
+          size={18}
           strokeWidth={2}
           fill={isFav ? '#e53935' : 'none'}
           stroke={isFav ? '#e53935' : 'var(--text-secondary)'}

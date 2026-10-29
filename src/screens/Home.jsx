@@ -1,71 +1,107 @@
 import { useNavigate } from 'react-router-dom';
-import { Search as SearchIcon, Plus } from 'lucide-react';
+import { Search as SearchIcon, Plus, Filter, Home as HomeIcon, Heart, User } from 'lucide-react';
 import ListingCard from '../components/ListingCard.jsx';
 import { useApp } from '../context/AppContext.jsx';
 
 export default function Home() {
   const navigate = useNavigate();
-  const { products } = useApp();
+  const { products, favorites, toggleFavorite } = useApp();
 
   const handleProductClick = (id) => {
     navigate(`/product/${id}`);
   };
 
+  const isFav = (id) => favorites.includes(id);
+
   return (
     <>
-      <header className="hero-header">
-        <div className="brand-logo">
-          <span className="brand-name-lizr">lizr.</span>
-          <span className="brand-name-tel">tel</span>
+      <div className="top-bar">
+        <div className="top-bar-inner">
+          <div className="top-bar-left">
+            <div className="location-chip">
+              <span className="location-dot" />
+              <span>حماه-سوريا</span>
+            </div>
+          </div>
+          <div className="brand-logo">
+            <span className="brand-name-lizr">lizr.</span>
+            <span className="brand-name-tel">tel</span>
+          </div>
+          <div className="top-bar-right">
+            <button className="notification-btn" onClick={() => showToast('الإشعارات')}>
+              <Bell size={20} strokeWidth={1.8} />
+            </button>
+          </div>
         </div>
-        <div className="hero-actions">
-          <button className="hero-icon-btn" onClick={() => navigate('/search')}>
-            <SearchIcon size={20} strokeWidth={1.8} />
+      </div>
+
+      <div className="hero">
+        <div className="hero-search-wrap">
+          <button className="hero-clear" onClick={() => navigate('/search')}>
+            <SearchIcon size={18} strokeWidth={1.8} />
           </button>
-          <button className="hero-icon-btn" onClick={() => navigate('/post')}>
-            <Plus size={20} strokeWidth={2.2} />
-          </button>
+          <input
+            className="hero-search-input"
+            placeholder="ابحث عن جهاز..."
+          />
         </div>
-      </header>
+        <button className="hero-filter-btn" onClick={() => navigate('/search')}>
+          <Filter size={16} strokeWidth={1.8} />
+          فلترة
+        </button>
+        <div className="hero-shortcuts">
+          <div className="shortcut-chip active">الكل</div>
+          <div className="shortcut-chip">جديد</div>
+          <div className="shortcut-chip">مستعمل</div>
+          <div className="shortcut-chip">استبدال</div>
+          <div className="shortcut-chip">اكسسوارات</div>
+        </div>
+      </div>
 
       <main style={{ flex: 1 }}>
-        <section style={{ padding: '16px 16px 8px' }}>
-          <div
-            className="product-viewer-3d"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              height: 200,
-              background: 'var(--bg-soft)',
-              borderRadius: 16,
-              color: 'var(--text-tertiary)',
-              fontSize: '0.9rem',
-              border: '1px solid var(--border)',
-            }}
-          >
-           preview ثلاثي الأبعاد قريباً
-          </div>
-        </section>
-
         {products.length === 0 ? (
-          <div style={{ padding: '40px 16px', textAlign: 'center', color: 'var(--text-secondary)' }}>
-            لا توجد منتجات متاحة حالياً
+          <div className="empty-state">
+            <div className="icon-wrap">
+              <Heart size={32} strokeWidth={1.8} />
+            </div>
+            <h3>لا توجد أجهزة متاحة حالياً</h3>
+            <p>لا توجد إعلانات معروضة في الوقت الحالي</p>
           </div>
         ) : (
-          <section style={{ padding: '0 12px 16px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
-              <Plus size={16} strokeWidth={2} />
-              <span style={{ fontSize: '0.95rem', fontWeight: 700 }}>الأجهزة المتاحة</span>
-            </div>
-            <div className="listings-grid">
-              {products.map((product) => (
-                <ListingCard key={product.id} product={product} />
-              ))}
-            </div>
-          </section>
+          <div className="listings-grid">
+            {products.map((product) => (
+              <ListingCard
+                key={product.id}
+                product={product}
+                isFav={isFav(product.id)}
+                onToggleFavorite={() => toggleFavorite(product.id)}
+              />
+            ))}
+          </div>
         )}
       </main>
+
+      <nav className="bottom-nav">
+        <a to="/" className="nav-item active">
+<HomeIcon size={21} strokeWidth={1.7} />
+            الرئيسية
+        </a>
+        <a to="/search" className="nav-item">
+          <SearchIcon size={21} strokeWidth={1.7} />
+          البحث
+        </a>
+        <a to="/post" className="nav-item post-btn" aria-label="أضف إعلان">
+          <Plus size={24} strokeWidth={2.2} />
+        </a>
+        <a to="/favorites" className="nav-item">
+          <Heart size={21} strokeWidth={1.7} />
+          المفضلة
+        </a>
+        <a to="/account" className="nav-item">
+          <User size={21} strokeWidth={1.7} />
+          حسابي
+        </a>
+      </nav>
     </>
   );
 }

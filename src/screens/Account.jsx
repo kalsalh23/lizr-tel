@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import {
-  Settings, Heart, ShoppingBag, HelpCircle,
+  ArrowLeft, Settings, Heart, ShoppingBag, HelpCircle,
   LogOut, Star, Check, Instagram, Facebook, Phone,
-  User, Bell, CreditCard, Truck, Shield,
+  User, Bell as BellIcon, CreditCard, Truck, Shield,
 } from 'lucide-react';
 import { useApp } from '../context/AppContext.jsx';
 
@@ -13,8 +13,8 @@ export default function Account() {
   const SHORTCUTS = [
     { label: 'المفضلة', Icon: Heart, badge: favorites.length > 0 ? favorites.length : null, onClick: () => navigate('/favorites') },
     { label: 'طلباتي', Icon: ShoppingBag, onClick: () => showToast('سيتم فتح طلباتي') },
-    { label: 'الإعلانات', Icon: User, onClick: () => showToast('سيتم فتح إعلاناتك') },
-    { label: 'الإشعارات', Icon: Bell, onClick: () => showToast('سيتم فتح الإشعارات') },
+    { label: 'إعلاناتي', Icon: User, onClick: () => showToast('سيتم فتح إعلاناتك') },
+    { label: 'إشعاراتي', Icon: BellIcon, onClick: () => showToast('سيتم فتح الإشعارات') },
   ];
 
   const MENU_1 = [
@@ -38,35 +38,35 @@ export default function Account() {
         </button>
         <div className="header-title centered">حسابي</div>
         <div className="header-actions">
-          <button className="icon-btn" onClick={() => showToast('سيتم فتح الإعدادات')}>
+          <button className="icon-btn" onClick={() => showToast('الإعدادات')}>
             <Settings size={17} strokeWidth={1.8} />
           </button>
         </div>
       </div>
 
       <div className="account-container">
-        <div className="account-header-card">
-          <div className="account-avatar-row">
+        <div className="account-hero-card">
+          <div className="account-hero-top">
             <div className="account-avatar">أ</div>
-            <div className="account-info">
-              <div className="account-name-row">
-                <span className="account-name">أحمد سامي</span>
-                <span className="account-verified"><Check size={10} strokeWidth={3} /></span>
+            <div className="account-hero-info">
+              <div className="account-hero-name">
+                أحمد سامي
+                <span className="account-hero-verified"><Check size={10} strokeWidth={3} /></span>
               </div>
-              <div className="account-meta">
-                <span className="account-stars">
+              <div className="account-hero-meta">
+                <span className="account-hero-stats">
                   <Star size={10} fill="#FFD700" stroke="#FFD700" strokeWidth={1} />
                   4.9
                 </span>
-                <span className="account-dot" />
+                <span className="account-hero-dot" />
                 <span>عضو منذ 2021</span>
-                <span className="account-dot" />
+                <span className="account-hero-dot" />
                 <span>حماه، سوريا</span>
               </div>
             </div>
           </div>
 
-          <div className="account-actions-grid">
+          <div className="account-hero-actions">
             {SHORTCUTS.map((item, idx) => (
               <div key={item.label} className="account-shortcut" onClick={item.onClick}>
                 <div className="account-shortcut-icon">
@@ -113,7 +113,7 @@ export default function Account() {
 
         <div className="contact-section">
           <h4>اتصل بنا</h4>
-          <div className="contact-item contact-item" style={{ cursor: 'default' }}>
+          <div className="contact-item" style={{ cursor: 'default' }}>
             <div className="menu-icon" style={{ background: 'var(--bg-soft)', color: 'var(--text-secondary)' }}>
               <Instagram size={18} strokeWidth={1.8} />
             </div>
