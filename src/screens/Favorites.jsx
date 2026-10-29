@@ -8,8 +8,6 @@ export default function Favorites() {
   const navigate = useNavigate();
   const { favorites } = useApp();
 
-  const favProducts = favorites.map((id) => PRODUCTS[id]).filter(Boolean);
-
   return (
     <>
       <header className="app-header">
@@ -21,7 +19,7 @@ export default function Favorites() {
         </div>
       </header>
 
-      {favProducts.length === 0 ? (
+      {favorites.length === 0 ? (
         <div className="empty-state">
           <div className="icon-wrap">
             <Heart size={32} strokeWidth={1.8} />
@@ -50,12 +48,12 @@ export default function Favorites() {
       ) : (
         <>
           <div style={{ padding: '12px 16px 4px', fontSize: '.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>
-            {favProducts.length} جهاز محفوظ
+            {favorites.length} جهاز محفوظ
           </div>
           <div className="listings-grid">
-            {favProducts.map((product) => (
-              <ListingCard key={product.id} product={product} />
-            ))}
+            {favorites.map((id) =>
+              PRODUCTS[id] ? <ListingCard key={id} product={PRODUCTS[id]} /> : null
+            )}
           </div>
         </>
       )}
