@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import Home from './screens/Home.jsx';
 import Search from './screens/Search.jsx';
@@ -26,24 +26,22 @@ export default function App() {
   return (
     <AppProvider>
       <ErrorBoundary>
-        <BrowserRouter>
-          <div className="app">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/search" element={<Search />} />
-              <Route path="/post" element={<Post />} />
-              <Route path="/chat" element={<Chat />} />
-              <Route path="/account" element={<Account />} />
-              <Route path="/favorites" element={<Favorites />} />
-              <Route path="/product/:id" element={<ProductDetail />} />
-            </Routes>
+        <div className="app">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/post" element={<Post />} />
+            <Route path="/chat" element={<Chat />} />
+            <Route path="/account" element={<Account />} />
+            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
+          </Routes>
 
-            {isMain && <BottomNav />}
+          {isMain && <BottomNav />}
 
-            <FilterSheet />
-            <Toast />
-          </div>
-        </BrowserRouter>
+          <FilterSheet />
+          <Toast />
+        </div>
       </ErrorBoundary>
     </AppProvider>
   );
