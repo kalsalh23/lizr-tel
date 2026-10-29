@@ -579,7 +579,7 @@ body {
 
 .account-hero-info {
   flex: 1;
-  minWidth: 0;
+              min-width: 0;
 }
 
 .account-hero-name {
@@ -1112,7 +1112,7 @@ body {
 
 .chat-info {
   flex: 1;
-  minWidth: 0;
+              min-width: 0;
 }
 
 .chat-name-row {

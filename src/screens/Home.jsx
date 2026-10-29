@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Search as SearchIcon, Plus, Filter, Home as HomeIcon, Heart, User, Bell } from 'lucide-react';
+import { Search as SearchIcon, Filter, Home as HomeIcon, Heart, Bell } from 'lucide-react';
 import ListingCard from '../components/ListingCard.jsx';
 import { useApp } from '../context/AppContext.jsx';
 
@@ -80,28 +80,6 @@ export default function Home() {
           </div>
         )}
       </main>
-
-      <nav className="bottom-nav">
-        <a to="/" className="nav-item active">
-<HomeIcon size={21} strokeWidth={1.7} />
-            الرئيسية
-        </a>
-        <a to="/search" className="nav-item">
-          <SearchIcon size={21} strokeWidth={1.7} />
-          البحث
-        </a>
-        <a to="/post" className="nav-item post-btn" aria-label="أضف إعلان">
-          <Plus size={24} strokeWidth={2.2} />
-        </a>
-        <a to="/favorites" className="nav-item">
-          <Heart size={21} strokeWidth={1.7} />
-          المفضلة
-        </a>
-        <a to="/account" className="nav-item">
-          <User size={21} strokeWidth={1.7} />
-          حسابي
-        </a>
-      </nav>
     </>
   );
 }
