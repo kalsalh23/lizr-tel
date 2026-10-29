@@ -5,7 +5,7 @@ import { useApp } from '../context/AppContext.jsx';
 
 export default function Home() {
   const navigate = useNavigate();
-  const { products, favorites, toggleFavorite } = useApp();
+  const { products, favorites, toggleFavorite, showToast } = useApp();
 
   const handleProductClick = (id) => {
     navigate(`/product/${id}`);
